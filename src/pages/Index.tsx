@@ -1,10 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroImages = [
+    'https://cdn.poehali.dev/files/4ec685e5-0f9b-426b-9dcf-49a435b0674f.jpg',
+    'https://cdn.poehali.dev/files/436490b2-04dd-44cf-94ed-ef59dd533bf8.jpg',
+    'https://cdn.poehali.dev/files/6536cfe9-f887-4d6a-aa41-f7078a655183.jpg',
+    'https://cdn.poehali.dev/files/f40767bf-9386-47f3-a955-f450c9045b4a.jpg'
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -87,14 +102,30 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="home" className="relative min-h-screen flex items-center">
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="https://cdn.poehali.dev/projects/5eb56f07-9c2d-46c2-b9f8-42e5b14481ff/files/e44eac2d-41e3-44d5-8efe-81ce81be0581.jpg"
-            alt="Гостевой дом Тай"
-            className="w-full h-full object-cover animate-scale-in"
-          />
+          {heroImages.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Гостевой дом Тай ${index + 1}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ))}
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
+        </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-12 h-1 rounded-full transition-all ${
+                index === currentSlide ? 'bg-white' : 'bg-white/40'
+              }`}
+            />
+          ))}
         </div>
         <div className="container mx-auto px-6 lg:px-12 relative z-10 py-32">
           <div className="max-w-3xl space-y-8 animate-fade-in-up">
