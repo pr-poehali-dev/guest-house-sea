@@ -119,9 +119,8 @@ const Index = () => {
               </Button>
               <Button 
                 size="lg" 
-                variant="outline" 
                 onClick={() => scrollToSection('contacts')}
-                className="px-10 py-7 rounded-2xl border-2 border-white text-white hover:bg-white hover:text-primary hover:scale-105 transition-all duration-300"
+                className="px-10 py-7 rounded-2xl bg-white/10 backdrop-blur-sm text-white border-2 border-white hover:bg-white hover:text-primary hover:scale-105 transition-all duration-300"
               >
                 Связаться
               </Button>
