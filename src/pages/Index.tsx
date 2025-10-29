@@ -90,7 +90,7 @@ const Index = () => {
       <section id="home" className="relative min-h-screen flex items-center">
         <div className="absolute inset-0">
           <img
-            src="https://cdn.poehali.dev/projects/5eb56f07-9c2d-46c2-b9f8-42e5b14481ff/files/d8709afd-5df4-480a-bb8a-c58ba9c4f338.jpg"
+            src="https://cdn.poehali.dev/projects/5eb56f07-9c2d-46c2-b9f8-42e5b14481ff/files/e44eac2d-41e3-44d5-8efe-81ce81be0581.jpg"
             alt="Гостевой дом Тай"
             className="w-full h-full object-cover animate-scale-in"
           />
