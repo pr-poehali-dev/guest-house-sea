@@ -102,82 +102,92 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          {heroImages.map((image, index) => (
-            <div key={index} className={`absolute inset-0 transition-all duration-1000 ${
-              index === currentSlide ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
-            }`}>
-              <img
-                src={image}
-                alt={`Гостевой дом Тай ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
+        <div className="grid lg:grid-cols-2 w-full min-h-screen">
+          <div className="relative overflow-hidden order-2 lg:order-1">
+            <div className="absolute inset-0">
+              {heroImages.map((image, index) => (
+                <div key={index} className={`absolute inset-0 transition-all duration-[2000ms] ease-out ${
+                  index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
+                }`}>
+                  <img
+                    src={image}
+                    alt={`Гостевой дом Тай ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/20" />
+                </div>
+              ))}
             </div>
-          ))}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-          <div className="absolute inset-0 backdrop-blur-[1px]" />
-          
-          <div className="absolute inset-0 pointer-events-none">
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-1 h-1 bg-white/30 rounded-full animate-pulse"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 3}s`,
-                  animationDuration: `${2 + Math.random() * 3}s`
-                }}
-              />
-            ))}
-          </div>
-          
-          <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-            <div className="absolute top-20 left-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-200/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
-          </div>
-        </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-          {heroImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-12 h-1 rounded-full transition-all ${
-                index === currentSlide ? 'bg-white' : 'bg-white/40'
-              }`}
-            />
-          ))}
-        </div>
-        <div className="container mx-auto px-6 lg:px-12 relative z-10 py-32">
-          <div className="max-w-3xl space-y-8 animate-fade-in-up">
-            <div className="inline-block border border-white/40 text-white px-6 py-3 text-xs tracking-[0.2em] backdrop-blur-md bg-white/5 rounded-full shadow-2xl">
-              У НАС ВСЕГДА ЛЕТО
+            
+            <div className="absolute bottom-12 left-12 z-10 flex gap-3">
+              {heroImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`transition-all duration-300 ${
+                    index === currentSlide 
+                      ? 'w-16 h-1 bg-white' 
+                      : 'w-8 h-1 bg-white/40 hover:bg-white/60'
+                  }`}
+                />
+              ))}
             </div>
-            <h1 className="text-6xl md:text-8xl font-light text-white leading-[1.1] tracking-tight drop-shadow-2xl">
-              Гостевой дом<br />
-              <span className="italic font-normal">Тай</span>
-            </h1>
-            <div className="h-px w-24 bg-gradient-to-r from-white/60 to-transparent shadow-lg" />
-            <p className="text-xl md:text-2xl text-white/95 font-light leading-relaxed drop-shadow-lg">
-              Мамайка, Сочи • 14 номеров • 100 метров от моря
-            </p>
-            <div className="flex flex-wrap gap-4 pt-4">
-              <Button 
-                size="lg" 
-                onClick={() => scrollToSection('rooms')} 
-                className="px-10 py-7 rounded-2xl bg-white text-primary hover:bg-white/90 hover:scale-105 hover:shadow-2xl transition-all duration-300 shadow-xl"
-              >
-                Посмотреть номера
-              </Button>
-              <Button 
-                size="lg" 
-                onClick={() => scrollToSection('contacts')}
-                className="px-10 py-7 rounded-2xl bg-white/10 backdrop-blur-md text-white border-2 border-white/60 hover:bg-white hover:text-primary hover:scale-105 hover:shadow-2xl transition-all duration-300 shadow-xl"
-              >
-                Связаться
-              </Button>
+          </div>
+
+          <div className="relative flex items-center justify-center px-8 lg:px-16 py-24 lg:py-0 order-1 lg:order-2">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#121212] to-[#0a0a0a]" />
+            
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s' }} />
+            
+            <div className="relative z-10 max-w-xl space-y-12 animate-fade-in-up">
+              <div className="space-y-2">
+                <div className="flex items-center gap-4">
+                  <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-white/60" />
+                  <span className="text-white/60 text-xs tracking-[0.3em] uppercase">Welcome to</span>
+                </div>
+                
+                <h1 className="text-7xl md:text-8xl lg:text-9xl font-extralight text-white tracking-tight">
+                  Тай
+                </h1>
+                
+                <p className="text-white/80 text-lg font-light tracking-wide pt-2">
+                  Гостевой дом на побережье Чёрного моря
+                </p>
+              </div>
+
+              <div className="space-y-6 text-white/70 text-base font-light leading-relaxed border-l border-white/20 pl-6">
+                <p>
+                  Уединённый оазис в самом сердце Мамайки. 14 элегантных номеров в 100 метрах от моря.
+                </p>
+                <div className="flex items-center gap-8 text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-primary/60" />
+                    <span>Мамайка, Сочи</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-primary/60" />
+                    <span>14 номеров</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Button 
+                  size="lg" 
+                  onClick={() => scrollToSection('rooms')} 
+                  className="px-12 py-7 bg-white text-black hover:bg-white/90 rounded-none font-light tracking-wider transition-all duration-500 hover:tracking-widest"
+                >
+                  НОМЕРА
+                </Button>
+                <Button 
+                  size="lg" 
+                  onClick={() => scrollToSection('contacts')}
+                  className="px-12 py-7 bg-transparent text-white border border-white/30 hover:bg-white hover:text-black rounded-none font-light tracking-wider transition-all duration-500 hover:tracking-widest"
+                >
+                  КОНТАКТЫ
+                </Button>
+              </div>
             </div>
           </div>
         </div>
