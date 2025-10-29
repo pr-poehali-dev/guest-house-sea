@@ -56,156 +56,161 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
-        <div className="container mx-auto px-4 py-4">
+      <nav className="fixed top-0 left-0 right-0 glass-effect border-b border-black/5 z-50">
+        <div className="container mx-auto px-6 lg:px-12 py-6">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-primary">ТАЙ</h1>
-            <div className="hidden md:flex gap-6">
+            <h1 className="text-3xl font-light tracking-widest text-primary">ТАЙ</h1>
+            <div className="hidden lg:flex gap-10">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
-                    activeSection === item.id ? 'text-primary' : 'text-foreground/70'
+                  className={`button-text transition-all duration-300 relative group ${
+                    activeSection === item.id ? 'text-primary' : 'text-foreground/60 hover:text-foreground'
                   }`}
                 >
                   {item.label}
+                  <span className={`absolute -bottom-2 left-0 w-full h-px bg-primary transform origin-left transition-transform duration-300 ${
+                    activeSection === item.id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  }`} />
                 </button>
               ))}
             </div>
-            <Button onClick={() => scrollToSection('contacts')} className="hidden md:inline-flex">
+            <Button 
+              onClick={() => scrollToSection('contacts')} 
+              className="hidden md:inline-flex px-8 py-6 rounded-none"
+              variant="default"
+            >
               Забронировать
             </Button>
           </div>
         </div>
       </nav>
 
-      <section id="home" className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-secondary/30 to-background">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 animate-fade-in">
-              <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
-                У НАС ВСЕГДА ЛЕТО! ☀️
-              </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-balance leading-tight">
-                Гостевой дом <span className="text-primary">У МОРЯ</span><br />
-                <span className="text-3xl md:text-5xl">"ТАЙ"</span>
-              </h1>
-              <p className="text-lg text-muted-foreground">
-                Мамайка, Сочи • 14 номеров • 100 метров от моря
-              </p>
-              <p className="text-base text-foreground/80">
-                Гостевой дом с открытым бассейном с подогревом, парковкой на 10 машин и общим лаунджем. 
-                Расположен на 1-ой линии в 100 метрах от моря.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" onClick={() => scrollToSection('rooms')} className="gap-2">
-                  Посмотреть номера
-                  <Icon name="ChevronRight" size={18} />
-                </Button>
-                <Button size="lg" variant="outline" onClick={() => scrollToSection('contacts')}>
-                  Связаться с нами
-                </Button>
-              </div>
+      <section id="home" className="relative min-h-screen flex items-center">
+        <div className="absolute inset-0">
+          <img
+            src="https://cdn.poehali.dev/projects/5eb56f07-9c2d-46c2-b9f8-42e5b14481ff/files/d8709afd-5df4-480a-bb8a-c58ba9c4f338.jpg"
+            alt="Гостевой дом Тай"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
+        </div>
+        <div className="container mx-auto px-6 lg:px-12 relative z-10 py-32">
+          <div className="max-w-3xl space-y-8">
+            <div className="inline-block border border-white/40 text-white px-6 py-3 text-xs tracking-[0.2em] backdrop-blur-sm">
+              У НАС ВСЕГДА ЛЕТО
             </div>
-            <div className="relative animate-fade-in">
-              <img
-                src="https://cdn.poehali.dev/projects/5eb56f07-9c2d-46c2-b9f8-42e5b14481ff/files/d8709afd-5df4-480a-bb8a-c58ba9c4f338.jpg"
-                alt="Бассейн гостевого дома Тай"
-                className="rounded-2xl shadow-2xl w-full"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-4 hidden md:block">
-                <div className="flex items-center gap-3">
-                  <div className="bg-primary/10 p-3 rounded-lg">
-                    <Icon name="Waves" className="text-primary" size={24} />
-                  </div>
-                  <div>
-                    <p className="font-semibold">Бассейн с подогревом</p>
-                    <p className="text-sm text-muted-foreground">Работает круглый год</p>
-                  </div>
-                </div>
-              </div>
+            <h1 className="text-6xl md:text-8xl font-light text-white leading-[1.1] tracking-tight">
+              Гостевой дом<br />
+              <span className="italic font-normal">Тай</span>
+            </h1>
+            <div className="h-px w-24 bg-white/40" />
+            <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed">
+              Мамайка, Сочи • 14 номеров • 100 метров от моря
+            </p>
+            <div className="flex flex-wrap gap-4 pt-4">
+              <Button 
+                size="lg" 
+                onClick={() => scrollToSection('rooms')} 
+                className="px-10 py-7 rounded-none bg-white text-primary hover:bg-white/90"
+              >
+                Посмотреть номера
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                onClick={() => scrollToSection('contacts')}
+                className="px-10 py-7 rounded-none border-2 border-white text-white hover:bg-white hover:text-primary"
+              >
+                Связаться
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="rooms" className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-bold">Наши номера</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              14 уютных номеров с современным ремонтом и всеми удобствами
+      <section id="rooms" className="py-32 bg-background">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="text-center mb-20 space-y-6 max-w-3xl mx-auto">
+            <h2 className="text-5xl md:text-7xl font-light text-luxury">Номера</h2>
+            <div className="h-px w-16 bg-primary/30 mx-auto" />
+            <p className="text-xl text-muted-foreground font-light">
+              14 уютных номеров с современным ремонтом и панорамными видами
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {rooms.map((room, idx) => (
-              <Card key={idx} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="relative h-48 bg-gradient-to-br from-primary/20 to-secondary/40">
+              <div key={idx} className="group cursor-pointer">
+                <div className="relative h-80 overflow-hidden mb-6">
                   <img
                     src="https://cdn.poehali.dev/projects/5eb56f07-9c2d-46c2-b9f8-42e5b14481ff/files/2bf54908-fbf8-4722-b5eb-5e30d8f3562e.jpg"
                     alt={room.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <CardContent className="p-6 space-y-3">
-                  <h3 className="text-xl font-semibold">{room.name}</h3>
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-light">{room.name}</h3>
                   <div className="space-y-2 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Icon name="Maximize" size={16} />
+                    <div className="flex items-center gap-3">
+                      <Icon name="Maximize" size={16} className="text-primary" />
                       <span>{room.size}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Icon name="Bed" size={16} />
+                    <div className="flex items-center gap-3">
+                      <Icon name="Bed" size={16} className="text-primary" />
                       <span>{room.beds}</span>
                     </div>
                   </div>
-                  <div className="pt-3 border-t">
-                    <p className="text-lg font-bold text-primary">{room.price}</p>
+                  <div className="pt-4 border-t border-border/50">
+                    <p className="text-xl font-light text-primary">{room.price}</p>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="amenities" className="py-16 md:py-24 bg-secondary/20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-bold">Удобства</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Всё для комфортного отдыха на берегу Чёрного моря
+      <section id="amenities" className="py-32 elegant-gradient">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="text-center mb-20 space-y-6 max-w-3xl mx-auto">
+            <h2 className="text-5xl md:text-7xl font-light text-luxury">Удобства</h2>
+            <div className="h-px w-16 bg-primary/30 mx-auto" />
+            <p className="text-xl text-muted-foreground font-light">
+              Всё для незабываемого отдыха на берегу Чёрного моря
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             {amenities.map((amenity, idx) => (
-              <div key={idx} className="bg-white rounded-xl p-6 space-y-3 hover:shadow-lg transition-shadow">
-                <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center">
-                  <Icon name={amenity.icon} className="text-primary" size={24} />
+              <div key={idx} className="text-center space-y-4 p-8 bg-white/50 backdrop-blur-sm hover:bg-white transition-all duration-500">
+                <div className="inline-flex items-center justify-center w-16 h-16 border border-primary/20">
+                  <Icon name={amenity.icon} className="text-primary" size={28} />
                 </div>
-                <h3 className="font-semibold text-lg">{amenity.title}</h3>
-                <p className="text-sm text-muted-foreground">{amenity.desc}</p>
+                <h3 className="text-xl font-light">{amenity.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{amenity.desc}</p>
               </div>
             ))}
           </div>
-          <div className="mt-12 bg-white rounded-2xl p-8 shadow-lg">
-            <div className="flex flex-col md:flex-row gap-8 items-center">
-              <div className="flex-1 space-y-4">
-                <h3 className="text-2xl font-bold">А ещё у нас есть баня на дровах!</h3>
-                <p className="text-muted-foreground">
+          <div className="max-w-5xl mx-auto bg-white p-16 shadow-lg">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <h3 className="text-3xl md:text-4xl font-light leading-tight">Баня на дровах</h3>
+                <div className="h-px w-16 bg-primary/30" />
+                <p className="text-lg text-muted-foreground leading-relaxed">
                   Традиционная русская баня для полного релакса после пляжа. 
                   Идеальное место для восстановления сил в любое время года.
                 </p>
-                <Button onClick={() => scrollToSection('contacts')} className="gap-2">
+                <Button 
+                  onClick={() => scrollToSection('contacts')} 
+                  className="px-8 py-6 rounded-none mt-6"
+                >
                   Забронировать баню
-                  <Icon name="Flame" size={18} />
                 </Button>
               </div>
-              <div className="flex-1">
-                <div className="bg-gradient-to-br from-accent/20 to-primary/20 rounded-xl p-8 text-center">
-                  <Icon name="Flame" size={64} className="text-accent mx-auto mb-4" />
-                  <p className="text-lg font-semibold">Баня работает круглый год</p>
+              <div className="relative h-96">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/10 flex items-center justify-center">
+                  <Icon name="Flame" size={80} className="text-accent/40" />
                 </div>
               </div>
             </div>
@@ -213,230 +218,229 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="prices" className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-bold">Цены на 2025/26 год</h2>
-            <p className="text-muted-foreground text-lg">
-              Прозрачные цены без скрытых платежей
+      <section id="prices" className="py-32 bg-background">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="text-center mb-20 space-y-6 max-w-3xl mx-auto">
+            <h2 className="text-5xl md:text-7xl font-light text-luxury">Цены</h2>
+            <div className="h-px w-16 bg-primary/30 mx-auto" />
+            <p className="text-xl text-muted-foreground font-light">
+              Сезон 2025/26
             </p>
           </div>
-          <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-6">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
             {prices.map((price, idx) => (
-              <Card key={idx} className="overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="bg-gradient-to-br from-primary to-primary/80 p-6 text-white">
-                  <h3 className="text-xl font-bold mb-2">{price.period}</h3>
-                  <p className="text-3xl font-bold">{price.price}</p>
+              <div key={idx} className="group hover:shadow-2xl transition-all duration-500">
+                <div className="bg-primary text-white p-10 text-center space-y-4">
+                  <h3 className="text-xl font-light tracking-wider">{price.period}</h3>
+                  <div className="h-px w-12 bg-white/30 mx-auto" />
+                  <p className="text-4xl font-light">{price.price}</p>
                 </div>
-                <CardContent className="p-6 space-y-4">
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Доп. место</span>
-                      <span className="font-medium">{price.extra}</span>
+                <div className="bg-white p-10 space-y-6">
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center pb-3 border-b border-border/30">
+                      <span className="text-sm text-muted-foreground">Доп. место</span>
+                      <span className="font-light">{price.extra}</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Депозит</span>
-                      <span className="font-medium">{price.deposit}</span>
+                    <div className="flex justify-between items-center pb-3 border-b border-border/30">
+                      <span className="text-sm text-muted-foreground">Депозит</span>
+                      <span className="font-light">{price.deposit}</span>
                     </div>
                   </div>
-                  <Button className="w-full" onClick={() => scrollToSection('contacts')}>
+                  <Button 
+                    className="w-full py-6 rounded-none group-hover:bg-primary group-hover:text-white transition-all duration-300" 
+                    variant="outline"
+                    onClick={() => scrollToSection('contacts')}
+                  >
                     Забронировать
                   </Button>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
-          <div className="mt-8 text-center text-sm text-muted-foreground">
-            <p>* Возвратный депозит возвращается после выезда</p>
+          <div className="mt-12 text-center text-sm text-muted-foreground italic">
+            <p>Возвратный депозит возвращается после выезда</p>
           </div>
         </div>
       </section>
 
-      <section id="gallery" className="py-16 md:py-24 bg-secondary/20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-bold">Галерея</h2>
-            <p className="text-muted-foreground text-lg">
-              Атмосфера нашего гостевого дома
-            </p>
+      <section id="gallery" className="py-32 elegant-gradient">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="text-center mb-20 space-y-6 max-w-3xl mx-auto">
+            <h2 className="text-5xl md:text-7xl font-light text-luxury">Галерея</h2>
+            <div className="h-px w-16 bg-primary/30 mx-auto" />
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="md:col-span-2 rounded-2xl overflow-hidden shadow-lg h-96">
+            <div className="md:col-span-2 h-[500px] overflow-hidden group cursor-pointer">
               <img
                 src="https://cdn.poehali.dev/projects/5eb56f07-9c2d-46c2-b9f8-42e5b14481ff/files/d8709afd-5df4-480a-bb8a-c58ba9c4f338.jpg"
                 alt="Бассейн"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-lg h-96">
+            <div className="h-[500px] overflow-hidden group cursor-pointer">
               <img
                 src="https://cdn.poehali.dev/projects/5eb56f07-9c2d-46c2-b9f8-42e5b14481ff/files/2bf54908-fbf8-4722-b5eb-5e30d8f3562e.jpg"
                 alt="Номер"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-lg h-96">
+            <div className="h-[500px] overflow-hidden group cursor-pointer">
               <img
                 src="https://cdn.poehali.dev/projects/5eb56f07-9c2d-46c2-b9f8-42e5b14481ff/files/6a96d835-f2fc-4f42-9519-449fbbcaa3d2.jpg"
                 alt="Пляж"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
             </div>
-            <div className="md:col-span-2 rounded-2xl overflow-hidden shadow-lg h-96 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-              <div className="text-center space-y-4">
-                <Icon name="Camera" size={64} className="text-primary mx-auto" />
-                <p className="text-xl font-semibold">Больше фото в Instagram</p>
-                <Button variant="outline" size="lg">Перейти</Button>
-              </div>
+            <div className="md:col-span-2 h-[500px] bg-gradient-to-br from-primary/5 to-accent/5 flex flex-col items-center justify-center space-y-6">
+              <Icon name="Camera" size={72} className="text-primary/30" />
+              <p className="text-2xl font-light">Больше фото в Instagram</p>
+              <Button variant="outline" size="lg" className="px-10 py-6 rounded-none">
+                Перейти
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="location" className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-bold">Расположение</h2>
-            <p className="text-muted-foreground text-lg">
-              Мамайка, Сочи — идеальное место для отдыха
+      <section id="location" className="py-32 bg-background">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="text-center mb-20 space-y-6 max-w-3xl mx-auto">
+            <h2 className="text-5xl md:text-7xl font-light text-luxury">Расположение</h2>
+            <div className="h-px w-16 bg-primary/30 mx-auto" />
+            <p className="text-xl text-muted-foreground font-light">
+              Мамайка, Сочи
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-10">
+              <div className="flex gap-6">
+                <div className="w-12 h-12 border border-primary/30 flex items-center justify-center flex-shrink-0">
                   <Icon name="MapPin" className="text-primary" size={24} />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">100 метров от моря</h3>
-                  <p className="text-muted-foreground">
-                    Расположен на 1-ой линии. До пляжа "Восход" или "73 км" — 600 метров по бетонной дороге.
+                <div className="space-y-2">
+                  <h3 className="text-xl font-light">100 метров от моря</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Расположен на первой линии. До пляжа "Восход" — 600 метров по бетонной дороге.
                   </p>
                 </div>
               </div>
-              <div className="flex gap-4">
-                <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="flex gap-6">
+                <div className="w-12 h-12 border border-primary/30 flex items-center justify-center flex-shrink-0">
                   <Icon name="Bus" className="text-primary" size={24} />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">Удобная транспортная доступность</h3>
-                  <p className="text-muted-foreground">
-                    От остановки "Восход" до дома — 600 метров. Регулярное автобусное сообщение.
+                <div className="space-y-2">
+                  <h3 className="text-xl font-light">Транспортная доступность</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    От остановки "Восход" до дома — 600 метров. Регулярное сообщение.
                   </p>
                 </div>
               </div>
-              <div className="flex gap-4">
-                <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="flex gap-6">
+                <div className="w-12 h-12 border border-primary/30 flex items-center justify-center flex-shrink-0">
                   <Icon name="Plane" className="text-primary" size={24} />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">Близко к аэропорту</h3>
-                  <p className="text-muted-foreground">
-                    Международный аэропорт Адлер-Сочи — 29 км. Около 30 минут на автомобиле.
+                <div className="space-y-2">
+                  <h3 className="text-xl font-light">Аэропорт</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Международный аэропорт Адлер-Сочи — 29 км, около 30 минут.
                   </p>
                 </div>
               </div>
-              <div className="bg-secondary/40 rounded-xl p-6 space-y-2">
-                <h4 className="font-semibold">Рядом с домом:</h4>
-                <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>• Зимний театр Сочи — 6 км</li>
-                  <li>• Парк "Ривьера" — 5 км</li>
-                  <li>• Морской порт Сочи — 5 км</li>
-                  <li>• Дагомыс — прогулочная зона</li>
-                </ul>
+              <div className="bg-secondary/30 p-8 space-y-4">
+                <h4 className="font-light text-lg">Рядом с домом</h4>
+                <div className="space-y-2 text-sm text-muted-foreground">
+                  <p>Зимний театр Сочи — 6 км</p>
+                  <p>Парк "Ривьера" — 5 км</p>
+                  <p>Морской порт Сочи — 5 км</p>
+                </div>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-primary/10 to-secondary/30 rounded-2xl h-96 flex items-center justify-center">
-              <div className="text-center space-y-4">
-                <Icon name="Map" size={64} className="text-primary mx-auto" />
-                <p className="font-semibold text-lg">Карта загружается...</p>
+            <div className="h-[600px] bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">
+              <div className="text-center space-y-6">
+                <Icon name="Map" size={80} className="text-primary/20 mx-auto" />
+                <p className="text-lg font-light text-muted-foreground">Интерактивная карта</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="excursions" className="py-16 md:py-24 bg-gradient-to-br from-primary/10 to-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-bold">Экскурсии</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Организуем туры по городу, окрестностям Сочи и в Абхазию
+      <section id="excursions" className="py-32 elegant-gradient">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="text-center mb-20 space-y-6 max-w-3xl mx-auto">
+            <h2 className="text-5xl md:text-7xl font-light text-luxury">Экскурсии</h2>
+            <div className="h-px w-16 bg-primary/30 mx-auto" />
+            <p className="text-xl text-muted-foreground font-light">
+              Организуем туры по Сочи и Абхазии
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {excursions.map((excursion, idx) => (
-              <Card key={idx} className="overflow-hidden hover:shadow-xl transition-shadow">
-                <CardContent className="p-6 space-y-4">
-                  <div className="bg-primary/10 w-16 h-16 rounded-xl flex items-center justify-center">
-                    <Icon name={excursion.icon} className="text-primary" size={32} />
+              <div key={idx} className="bg-white p-10 text-center space-y-6 hover:shadow-2xl transition-all duration-500 group">
+                <div className="inline-flex items-center justify-center w-20 h-20 border border-primary/20 group-hover:border-primary/40 transition-colors">
+                  <Icon name={excursion.icon} className="text-primary" size={36} />
+                </div>
+                <div className="space-y-3">
+                  <h3 className="text-2xl font-light">{excursion.name}</h3>
+                  <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                    <Icon name="Clock" size={14} />
+                    <span>{excursion.duration}</span>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-xl mb-2">{excursion.name}</h3>
-                    <div className="space-y-1 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-2">
-                        <Icon name="Clock" size={14} />
-                        <span>{excursion.duration}</span>
-                      </div>
-                      <p className="text-lg font-bold text-primary mt-2">{excursion.price}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  <p className="text-xl font-light text-primary pt-3">{excursion.price}</p>
+                </div>
+              </div>
             ))}
           </div>
-          <div className="bg-white rounded-2xl p-8 shadow-lg text-center space-y-4">
-            <h3 className="text-2xl font-bold">Популярные виды активного отдыха</h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Пешие прогулки вдоль моря до Дагомыса или Мамайки, катание на велосипедах, 
+          <div className="max-w-4xl mx-auto bg-white p-16 text-center space-y-8 shadow-lg">
+            <h3 className="text-3xl md:text-4xl font-light">Активный отдых</h3>
+            <div className="h-px w-16 bg-primary/30 mx-auto" />
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+              Пешие прогулки вдоль моря, катание на велосипедах, 
               посещение аквапарков и дельфинария
             </p>
-            <Button size="lg" onClick={() => scrollToSection('contacts')} className="gap-2">
+            <Button size="lg" onClick={() => scrollToSection('contacts')} className="px-10 py-7 rounded-none">
               Заказать экскурсию
-              <Icon name="ArrowRight" size={18} />
             </Button>
           </div>
         </div>
       </section>
 
-      <section id="contacts" className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-bold">Контакты</h2>
-            <p className="text-muted-foreground text-lg">
-              Свяжитесь с нами для бронирования
-            </p>
+      <section id="contacts" className="py-32 bg-background">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="text-center mb-20 space-y-6 max-w-3xl mx-auto">
+            <h2 className="text-5xl md:text-7xl font-light text-luxury">Контакты</h2>
+            <div className="h-px w-16 bg-primary/30 mx-auto" />
           </div>
-          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-            <div className="space-y-6">
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold">Гостевой дом "ТАЙ"</h3>
-                <div className="space-y-3">
-                  <div className="flex gap-3 items-start">
-                    <Icon name="MapPin" className="text-primary mt-1" size={20} />
-                    <div>
-                      <p className="font-medium">Адрес</p>
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
+            <div className="space-y-12">
+              <div className="space-y-6">
+                <h3 className="text-3xl font-light">Гостевой дом "Тай"</h3>
+                <div className="space-y-6">
+                  <div className="flex gap-4 items-start">
+                    <Icon name="MapPin" className="text-primary mt-2" size={20} />
+                    <div className="space-y-1">
+                      <p className="font-light">Адрес</p>
                       <p className="text-muted-foreground">Мамайка, Сочи, Краснодарский край</p>
                     </div>
                   </div>
-                  <div className="flex gap-3 items-start">
-                    <Icon name="Phone" className="text-primary mt-1" size={20} />
-                    <div>
-                      <p className="font-medium">Телефон</p>
+                  <div className="flex gap-4 items-start">
+                    <Icon name="Phone" className="text-primary mt-2" size={20} />
+                    <div className="space-y-1">
+                      <p className="font-light">Телефон</p>
                       <p className="text-muted-foreground">+7 (XXX) XXX-XX-XX</p>
                     </div>
                   </div>
-                  <div className="flex gap-3 items-start">
-                    <Icon name="Mail" className="text-primary mt-1" size={20} />
-                    <div>
-                      <p className="font-medium">Email</p>
+                  <div className="flex gap-4 items-start">
+                    <Icon name="Mail" className="text-primary mt-2" size={20} />
+                    <div className="space-y-1">
+                      <p className="font-light">Email</p>
                       <p className="text-muted-foreground">info@tai-sochi.ru</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="bg-secondary/40 rounded-xl p-6 space-y-3">
-                <h4 className="font-semibold">Время работы</h4>
+              <div className="bg-secondary/30 p-8 space-y-4">
+                <h4 className="font-light text-lg">Время работы</h4>
                 <p className="text-sm text-muted-foreground">
                   Стойка регистрации работает круглосуточно
                 </p>
@@ -445,73 +449,71 @@ const Index = () => {
                 </p>
               </div>
             </div>
-            <Card>
-              <CardContent className="p-6 space-y-4">
-                <h3 className="text-xl font-semibold">Оставьте заявку</h3>
-                <div className="space-y-4">
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">Имя</label>
-                    <input
-                      type="text"
-                      placeholder="Ваше имя"
-                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">Телефон</label>
-                    <input
-                      type="tel"
-                      placeholder="+7 (XXX) XXX-XX-XX"
-                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">Даты заезда</label>
-                    <input
-                      type="text"
-                      placeholder="ДД.ММ.ГГГГ - ДД.ММ.ГГГГ"
-                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">Комментарий</label>
-                    <textarea
-                      placeholder="Количество гостей, пожелания..."
-                      rows={3}
-                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                    />
-                  </div>
-                  <Button className="w-full" size="lg">
-                    Отправить заявку
-                  </Button>
+            <div className="bg-white p-10 shadow-lg">
+              <h3 className="text-2xl font-light mb-8">Заявка на бронирование</h3>
+              <div className="space-y-6">
+                <div>
+                  <label className="text-sm tracking-wider mb-3 block text-muted-foreground">ИМЯ</label>
+                  <input
+                    type="text"
+                    placeholder="Ваше имя"
+                    className="w-full px-0 py-3 border-0 border-b border-border focus:outline-none focus:border-primary transition-colors bg-transparent"
+                  />
                 </div>
-              </CardContent>
-            </Card>
+                <div>
+                  <label className="text-sm tracking-wider mb-3 block text-muted-foreground">ТЕЛЕФОН</label>
+                  <input
+                    type="tel"
+                    placeholder="+7 (XXX) XXX-XX-XX"
+                    className="w-full px-0 py-3 border-0 border-b border-border focus:outline-none focus:border-primary transition-colors bg-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm tracking-wider mb-3 block text-muted-foreground">ДАТЫ ЗАЕЗДА</label>
+                  <input
+                    type="text"
+                    placeholder="ДД.ММ.ГГГГ - ДД.ММ.ГГГГ"
+                    className="w-full px-0 py-3 border-0 border-b border-border focus:outline-none focus:border-primary transition-colors bg-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm tracking-wider mb-3 block text-muted-foreground">КОММЕНТАРИЙ</label>
+                  <textarea
+                    placeholder="Количество гостей, пожелания..."
+                    rows={3}
+                    className="w-full px-0 py-3 border-0 border-b border-border focus:outline-none focus:border-primary transition-colors resize-none bg-transparent"
+                  />
+                </div>
+                <Button className="w-full py-7 rounded-none mt-4">
+                  Отправить заявку
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <footer className="bg-foreground/5 py-8 border-t">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-              <h3 className="font-bold text-xl text-primary mb-1">ТАЙ</h3>
+      <footer className="border-t border-border/50 py-12 bg-background">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl font-light tracking-widest text-primary mb-2">ТАЙ</h3>
               <p className="text-sm text-muted-foreground">Гостевой дом у моря • Мамайка, Сочи</p>
             </div>
-            <div className="flex gap-4">
-              <Button variant="ghost" size="icon">
-                <Icon name="Instagram" size={20} />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <Icon name="Facebook" size={20} />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <Icon name="Phone" size={20} />
-              </Button>
+            <div className="flex gap-6">
+              <button className="w-12 h-12 border border-border/50 flex items-center justify-center hover:border-primary transition-colors">
+                <Icon name="Instagram" size={18} />
+              </button>
+              <button className="w-12 h-12 border border-border/50 flex items-center justify-center hover:border-primary transition-colors">
+                <Icon name="Facebook" size={18} />
+              </button>
+              <button className="w-12 h-12 border border-border/50 flex items-center justify-center hover:border-primary transition-colors">
+                <Icon name="Phone" size={18} />
+              </button>
             </div>
           </div>
-          <div className="mt-6 pt-6 border-t text-center text-sm text-muted-foreground">
-            <p>© 2025 Гостевой дом "ТАЙ". Все права защищены.</p>
+          <div className="mt-12 pt-8 border-t border-border/30 text-center text-sm text-muted-foreground">
+            <p>© 2025 Гостевой дом "Тай". Все права защищены.</p>
           </div>
         </div>
       </footer>
