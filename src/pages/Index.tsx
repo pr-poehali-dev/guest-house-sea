@@ -105,16 +105,19 @@ const Index = () => {
       <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0">
           {heroImages.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={`Гостевой дом Тай ${index + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
+            <div key={index} className={`absolute inset-0 transition-all duration-1000 ${
+              index === currentSlide ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
+            }`}>
+              <img
+                src={image}
+                alt={`Гостевой дом Тай ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
           ))}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 backdrop-blur-[1px]" />
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
           {heroImages.map((_, index) => (
@@ -129,29 +132,29 @@ const Index = () => {
         </div>
         <div className="container mx-auto px-6 lg:px-12 relative z-10 py-32">
           <div className="max-w-3xl space-y-8 animate-fade-in-up">
-            <div className="inline-block border border-white/40 text-white px-6 py-3 text-xs tracking-[0.2em] backdrop-blur-sm rounded-full">
+            <div className="inline-block border border-white/40 text-white px-6 py-3 text-xs tracking-[0.2em] backdrop-blur-md bg-white/5 rounded-full shadow-2xl">
               У НАС ВСЕГДА ЛЕТО
             </div>
-            <h1 className="text-6xl md:text-8xl font-light text-white leading-[1.1] tracking-tight">
+            <h1 className="text-6xl md:text-8xl font-light text-white leading-[1.1] tracking-tight drop-shadow-2xl">
               Гостевой дом<br />
               <span className="italic font-normal">Тай</span>
             </h1>
-            <div className="h-px w-24 bg-white/40" />
-            <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed">
+            <div className="h-px w-24 bg-gradient-to-r from-white/60 to-transparent shadow-lg" />
+            <p className="text-xl md:text-2xl text-white/95 font-light leading-relaxed drop-shadow-lg">
               Мамайка, Сочи • 14 номеров • 100 метров от моря
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <Button 
                 size="lg" 
                 onClick={() => scrollToSection('rooms')} 
-                className="px-10 py-7 rounded-2xl bg-white text-primary hover:bg-white/90 hover:scale-105 transition-all duration-300"
+                className="px-10 py-7 rounded-2xl bg-white text-primary hover:bg-white/90 hover:scale-105 hover:shadow-2xl transition-all duration-300 shadow-xl"
               >
                 Посмотреть номера
               </Button>
               <Button 
                 size="lg" 
                 onClick={() => scrollToSection('contacts')}
-                className="px-10 py-7 rounded-2xl bg-white/10 backdrop-blur-sm text-white border-2 border-white hover:bg-white hover:text-primary hover:scale-105 transition-all duration-300"
+                className="px-10 py-7 rounded-2xl bg-white/10 backdrop-blur-md text-white border-2 border-white/60 hover:bg-white hover:text-primary hover:scale-105 hover:shadow-2xl transition-all duration-300 shadow-xl"
               >
                 Связаться
               </Button>
