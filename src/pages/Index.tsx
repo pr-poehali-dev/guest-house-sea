@@ -102,95 +102,103 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a]">
-        <div className="grid lg:grid-cols-2 w-full min-h-screen">
-          <div className="relative overflow-hidden order-2 lg:order-1">
-            <div className="absolute inset-0">
-              {heroImages.map((image, index) => (
-                <div key={index} className={`absolute inset-0 transition-all duration-[2000ms] ease-out ${
-                  index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
-                }`}>
-                  <img
-                    src={image}
-                    alt={`Гостевой дом Тай ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/20" />
-                </div>
-              ))}
+      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          {heroImages.map((image, index) => (
+            <div key={index} className={`absolute inset-0 transition-all duration-[1500ms] ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}>
+              <div className="absolute inset-0 bg-black/40 z-10" />
+              <img
+                src={image}
+                alt={`Гостевой дом Тай ${index + 1}`}
+                className="w-full h-full object-cover scale-105"
+                style={{
+                  animation: index === currentSlide ? 'slowZoom 12s ease-out infinite alternate' : 'none'
+                }}
+              />
             </div>
-            
-            <div className="absolute bottom-12 left-12 z-10 flex gap-3">
-              {heroImages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'w-16 h-1 bg-white' 
-                      : 'w-8 h-1 bg-white/40 hover:bg-white/60'
-                  }`}
-                />
-              ))}
+          ))}
+        </div>
+
+        <div className="absolute inset-0 flex items-center justify-center z-20">
+          <div className="text-center space-y-16 px-6 animate-fade-in-up">
+            <div className="space-y-8">
+              <div className="inline-block">
+                <div className="w-20 h-[2px] bg-white/80 mb-8 mx-auto" />
+              </div>
+              
+              <h1 className="text-8xl md:text-9xl lg:text-[12rem] font-thin text-white tracking-[-0.02em] leading-none">
+                ТАЙ
+              </h1>
+              
+              <div className="space-y-3">
+                <p className="text-white/90 text-xl md:text-2xl font-light tracking-[0.15em]">
+                  ГОСТЕВОЙ ДОМ
+                </p>
+                <div className="flex items-center justify-center gap-4 text-white/70 text-sm tracking-wider">
+                  <span>МАМАЙКА</span>
+                  <span>•</span>
+                  <span>СОЧИ</span>
+                  <span>•</span>
+                  <span>100М ОТ МОРЯ</span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="relative flex items-center justify-center px-8 lg:px-16 py-24 lg:py-0 order-1 lg:order-2">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#121212] to-[#0a0a0a]" />
-            
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s' }} />
-            
-            <div className="relative z-10 max-w-xl space-y-12 animate-fade-in-up">
-              <div className="space-y-2">
-                <div className="flex items-center gap-4">
-                  <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-white/60" />
-                  <span className="text-white/60 text-xs tracking-[0.3em] uppercase">Welcome to</span>
-                </div>
-                
-                <h1 className="text-7xl md:text-8xl lg:text-9xl font-extralight text-white tracking-tight">
-                  Тай
-                </h1>
-                
-                <p className="text-white/80 text-lg font-light tracking-wide pt-2">
-                  Гостевой дом на побережье Чёрного моря
-                </p>
-              </div>
-
-              <div className="space-y-6 text-white/70 text-base font-light leading-relaxed border-l border-white/20 pl-6">
-                <p>
-                  Уединённый оазис в самом сердце Мамайки. 14 элегантных номеров в 100 метрах от моря.
-                </p>
-                <div className="flex items-center gap-8 text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-primary/60" />
-                    <span>Мамайка, Сочи</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-primary/60" />
-                    <span>14 номеров</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button 
-                  size="lg" 
-                  onClick={() => scrollToSection('rooms')} 
-                  className="px-12 py-7 bg-white text-black hover:bg-white/90 rounded-none font-light tracking-wider transition-all duration-500 hover:tracking-widest"
-                >
-                  НОМЕРА
-                </Button>
-                <Button 
-                  size="lg" 
-                  onClick={() => scrollToSection('contacts')}
-                  className="px-12 py-7 bg-transparent text-white border border-white/30 hover:bg-white hover:text-black rounded-none font-light tracking-wider transition-all duration-500 hover:tracking-widest"
-                >
-                  КОНТАКТЫ
-                </Button>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button 
+                size="lg" 
+                onClick={() => scrollToSection('rooms')} 
+                className="px-16 py-8 bg-white/95 text-black hover:bg-white rounded-full font-light text-sm tracking-[0.2em] transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              >
+                ЗАБРОНИРОВАТЬ
+              </Button>
+              <Button 
+                size="lg" 
+                onClick={() => scrollToSection('about')}
+                className="px-16 py-8 bg-transparent text-white border-2 border-white/70 hover:bg-white hover:text-black rounded-full font-light text-sm tracking-[0.2em] transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              >
+                О НАС
+              </Button>
             </div>
           </div>
         </div>
+
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`transition-all duration-300 ${
+                index === currentSlide 
+                  ? 'w-12 h-[2px] bg-white' 
+                  : 'w-12 h-[2px] bg-white/30 hover:bg-white/50'
+              }`}
+            />
+          ))}
+        </div>
+
+        <div className="absolute bottom-12 left-12 z-30 hidden lg:block">
+          <div className="text-white/60 text-xs tracking-[0.2em] space-y-1">
+            <div>+7 (XXX) XXX-XX-XX</div>
+            <div>INFO@TAI-SOCHI.RU</div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-12 right-12 z-30 hidden lg:block">
+          <div className="text-white/60 text-xs tracking-[0.2em]">
+            SCROLL
+            <div className="w-[1px] h-12 bg-white/40 mx-auto mt-2" />
+          </div>
+        </div>
+
+        <style>{`
+          @keyframes slowZoom {
+            from { transform: scale(1.05); }
+            to { transform: scale(1.15); }
+          }
+        `}</style>
       </section>
 
       <section id="rooms" className="py-32 bg-background">
